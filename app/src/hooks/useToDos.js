@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { useLocalStorage } from "./hooks/useLocalStorage";
+import { useState } from "react";
+import { useLocalStorage } from "./useLocalStorage";
 
-const ToDoContext = React.createContext();
-
-function ToDoProvider(props) {
+export function useToDos() {
     // Custom hook localStorage
     const {
         item: toDos,
@@ -32,7 +30,7 @@ function ToDoProvider(props) {
     }
 
     // Funcionalidad de completar ToDos
-    const completeToDo = text => {
+    const completeToDo = (text) => {
         const newToDos = toDos.map((toDo) => {
             if (toDo.text === text) {
                 return { ...toDo, completed: !toDo.completed };
@@ -45,37 +43,29 @@ function ToDoProvider(props) {
     };
 
     // Funcionalidad de borrar ToDos
-    const deleteToDo = text => {
+    const deleteToDo = (text) => {
         const newToDos = toDos.filter((toDo) => toDo.text !== text);
         saveToDos(newToDos);
     };
 
     // Funcionalidad de agregar ToDo
-    const addToDo = text => {
+    const addToDo = (text) => {
         const newToDos = [...toDos, { text, completed: false }];
         saveToDos(newToDos);
-    }
+    };
 
-    return (
-        <ToDoContext.Provider
-            value={{
-                loading,
-                error,
-                totalToDos,
-                completedToDos,
-                searchValue,
-                setSearchValue,
-                filteredToDos,
-                completeToDo,
-                deleteToDo,
-                addToDo,
-                openModal,
-                setOpenModal,
-            }}
-        >
-            {props.children}
-        </ToDoContext.Provider>
-    );
+    return {
+        loading,
+        error,
+        totalToDos,
+        completedToDos,
+        searchValue,
+        setSearchValue,
+        filteredToDos,
+        completeToDo,
+        deleteToDo,
+        addToDo,
+        openModal,
+        setOpenModal,
+    };
 }
-
-export { ToDoContext, ToDoProvider };
