@@ -1,11 +1,14 @@
 import React from 'react'
 import '../css/ToDoList.css'
 
-const ToDoList = ({children}) => {
+const ToDoList = ({ error, loading, filteredToDos, onError, onLoading, render }) => {
     return (
-        <section>
+        <section className='ToDoList-container'>
+            {error && onError()}
+            {loading && onLoading()}
+
             <ul>
-                {children}
+                {filteredToDos.map(render)}
             </ul>
         </section>
     )

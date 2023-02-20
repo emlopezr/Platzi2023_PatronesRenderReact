@@ -43,11 +43,13 @@ const App = () => {
                 />
             </ToDoHeader>
 
-            <ToDoList>
-                {error && <p>Error!</p>}
-                {loading && <p>Cargando...</p>}
-
-                {filteredToDos.map((todo) => (
+            <ToDoList
+                error={error}
+                loading={loading}
+                filteredToDos={filteredToDos}
+                onError={() => <p>Error!</p>}
+                onLoading={() => <p>Cargando...</p>}
+                render={todo => (
                     <ToDoItem
                         key={todo.text}
                         text={todo.text}
@@ -55,8 +57,8 @@ const App = () => {
                         onComplete={() => completeToDo(todo.text)}
                         onDelete={() => deleteToDo(todo.text)}
                     />
-                ))}
-            </ToDoList>
+                )}
+            />
 
             {openModal && (
                 <Modal>
