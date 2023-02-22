@@ -7,9 +7,11 @@ const ToDoList = ({ error, loading, filteredToDos, onError, onLoading, render })
             {error && onError()}
             {loading && onLoading()}
 
-            <ul>
-                {filteredToDos.map(render)}
-            </ul>
+            {!error && !loading &&
+                <ul>
+                    {filteredToDos.map(render)}
+                </ul>
+            }
         </section>
     )
 }

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 export function useLocalStorage(itemName, initialValue) {
+    const [storageChange, setStorageChange] = useState(false)
+    const [sincronized, setSincronized] = useState(false)
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [item, setItem] = useState(initialValue);
@@ -27,7 +29,7 @@ export function useLocalStorage(itemName, initialValue) {
                 setError(error);
             }
         }, 1000);
-    }, []);
+    }, [sincronized]);
 
     // Guardar los cambios en localStorage
     const saveItem = (newItem) => {
@@ -38,6 +40,15 @@ export function useLocalStorage(itemName, initialValue) {
             setError(error);
         }
     };
+
+    // Escuchar los cambios en localStorage y recargar
+    window.addEventListener('storage', change => {
+        if (change.key === 'ToDos') {
+            setStorageChange(true)
+            setSincronized(!sincronized)
+            setLoading(true);
+        }
+    })
 
     return { item, saveItem, loading, error };
 }

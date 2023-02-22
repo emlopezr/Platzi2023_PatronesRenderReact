@@ -26,7 +26,8 @@ const App = () => {
         totalToDos,
         completedToDos,
         searchValue,
-        setSearchValue
+        setSearchValue,
+        listenChanges
     } = useToDos();
 
     return (

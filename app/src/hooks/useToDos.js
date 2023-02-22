@@ -8,6 +8,7 @@ export function useToDos() {
         saveItem: saveToDos,
         loading,
         error,
+        listenChanges,
     } = useLocalStorage("ToDos", []);
 
     // useStates
@@ -67,5 +68,6 @@ export function useToDos() {
         addToDo,
         openModal,
         setOpenModal,
+        listenChanges
     };
 }
