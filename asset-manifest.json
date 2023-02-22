@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Platzi2023_PatronesRenderReact/static/css/main.fc47b12c.css",
+    "main.js": "/Platzi2023_PatronesRenderReact/static/js/main.25864eac.js",
+    "index.html": "/Platzi2023_PatronesRenderReact/index.html",
+    "main.fc47b12c.css.map": "/Platzi2023_PatronesRenderReact/static/css/main.fc47b12c.css.map",
+    "main.25864eac.js.map": "/Platzi2023_PatronesRenderReact/static/js/main.25864eac.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc47b12c.css",
+    "static/js/main.25864eac.js"
+  ]
+}
